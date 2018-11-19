@@ -48,14 +48,26 @@ class App extends Component {
           removeReference={this.removeReference}
         />
       );
+
     });
+
+    let workExperiences =this.state.workExperiencesArray.map((we, index) =>
+    {
+      return(
+        <WorkExperience
+        shouldNotShowWorkExpButton = {index===0}
+        addExperience={this.addworkExperience}
+        removeExperience={this.removeWorkExperience}/>
+      )
+      
+    })
     return (
       <div className="App">
         <Personals />
         {references}
         <BackgroundCheck></BackgroundCheck>
         <Education></Education>
-        <WorkExperience></WorkExperience>
+        {workExperiences}
       </div>
       
     );

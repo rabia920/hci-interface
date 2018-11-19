@@ -18,7 +18,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import Button from '@material-ui/core/Button';
 
 
-const workExperience = () => {
+const workExperience = (props) => {
   return (
     <div className="weform">
           <Grid container spacing={12}>
@@ -83,7 +83,12 @@ const workExperience = () => {
           </Grid>
           <Grid container item spacing={12}>
             <Grid item xs={5}></Grid>
-            <Button>Add another work experience?</Button>
+            <Button onClick={props.addExperience}>Add another work experience?</Button>
+            {props.shouldNotShowWorkExpButton === true ? (
+              ''
+            ) : (
+              <Button onClick={props.removeExperience}>Remove work experience</Button>
+            )}
           </Grid>
         </Grid>
     </div>
