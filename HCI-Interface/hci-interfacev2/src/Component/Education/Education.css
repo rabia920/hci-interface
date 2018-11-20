@@ -5,3 +5,8 @@
     flex-direction: column; 
    align-content: center;
 }
+
+.spacing {
+    margin-top: 28px;
+    margin-bottom: 28px;
+  }

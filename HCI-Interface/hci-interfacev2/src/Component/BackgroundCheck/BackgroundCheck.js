@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component} from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import './BackgroundCheck.css';
 import Grid from '@material-ui/core/Grid';
@@ -14,9 +14,20 @@ import Typography from '@material-ui/core/Typography';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormLabel from '@material-ui/core/FormLabel';
+import FormHelperText from '@material-ui/core/FormHelperText';
 
-const BackgroundCheck = () => {
-  return (
+class BackgroundCheck extends Component {
+
+  state = {
+    status: [false]
+  }
+  handleChange = (num) => {
+    let valueToRender = JSON.parse(JSON.stringify(this.state.status));
+    valueToRender[num] = !valueToRender[num]
+    this.setState({status:valueToRender})
+  }
+  render(){
+    return (
     <div className="BGform">
      <Grid container item spacing={24}>
      <Grid item xs={6}></Grid>
@@ -33,17 +44,18 @@ const BackgroundCheck = () => {
            control={
             <Switch
               //checked={this.state.checkedA}
-              //onChange={this.handleChange('checkedA')}
+              onChange={() => this.handleChange(0)}
               value="Yes"
             />
           }
             label="Have you ever been accused, convicted, plead guilty to or charged with a misdemeanor or felony?"
+            
         />
+        <FormHelperText>{this.state.status[0]=== true ? "Yes" : "No"}</FormHelperText>
         </Grid>
           <Grid item xs={12}>
             <TextField
               placeholder="Please explain your circumstances"
-              variant="outlined"
               multiline={true}
               rows={10}
               rowsMax={20}
@@ -56,5 +68,6 @@ const BackgroundCheck = () => {
     </div>
   );
 };
+}
 
 export default BackgroundCheck;
